@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import SearchBox from './components/SearchBox'
-import PropertiesSection from './components/PropertiesSection'
-import { properties } from './data/properties'
+import type { Property } from '../types/property'
+import Header from './layout/Header'
+import Hero from './ui/Hero'
+import SearchBox from './ui/SearchBox'
+import PropertiesSection from './properties/PropertiesSection'
+import { properties } from '../data/properties'
+import { filterProperties } from './utils/filterProperties'
 
 
 function App() {
@@ -11,10 +13,9 @@ function App() {
   const [search, setSearch] = useState("")
   const [type, setType] = useState("")
   const [searchedType, setSearchedType] = useState("")
-  const [propertiesFromAPI, setPropertiesFromAPI] = useState([])
+  const [propertiesFromAPI, setPropertiesFromAPI] = useState<Property[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-  //Agregar filtro con huespedes const []= useState("")
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -25,21 +26,12 @@ function App() {
       } finally {
         setIsLoading(false);
       }
-    }, 4000);
+    }, 3000);
 
     return () => clearTimeout(timerId);
   }, []);
 
-  const filteredProperties = propertiesFromAPI.filter((property) => {
-    const searchText = search.toLowerCase();
-    const searchType = searchedType.toLowerCase()
-
-    return (
-      property.title.toLowerCase().includes(searchText) ||
-      property.location.toLowerCase().includes(searchText)) &&
-      property.type.toLowerCase().includes(searchType)
-  });
-
+  const filteredProperties = filterProperties(propertiesFromAPI, search, searchedType)
 
   return (
     <>
@@ -66,9 +58,18 @@ function App() {
           onSearchType={setSearchedType}
         />
 
-        {isLoading && <p className='my-8 text-center'>Cargando propiedades...</p>}
+        {isLoading && (
+          <div className="mt-16 flex flex-col items-center gap-3">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-border border-t-accent" />
+            <p className="text-sm font-semibold text-muted">Cargando propiedades...</p>
+          </div>
+        )}
 
-        {error && <p>{error}</p>}
+        {error && (
+          <p className="mt-16 text-center text-sm font-semibold text-red-400">
+            {error}
+          </p>
+        )}
 
         {!isLoading && !error && (
           <PropertiesSection properties={filteredProperties} />
@@ -79,4 +80,3 @@ function App() {
 }
 
 export default App
-

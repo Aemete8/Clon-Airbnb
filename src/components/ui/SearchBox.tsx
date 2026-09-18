@@ -1,8 +1,21 @@
-import SearchField from './SearchField.jsx'
+import type { FormEvent } from 'react'
+import SearchField from './SearchField'
 
-function SearchBox({ value, searchedValue, onChange, onSearch, onClear, type, onChangeType, searchedType, onSearchType }) {
+interface SearchBoxProps {
+    value: string
+    searchedValue: string
+    onChange: (value: string) => void
+    onSearch: (value: string) => void
+    onClear: () => void
+    type: string
+    onChangeType: (value: string) => void
+    searchedType: string
+    onSearchType: (value: string) => void
+}
 
-    function handleSubmit(event) {
+function SearchBox({ value, searchedValue, onChange, onSearch, onClear, type, onChangeType, searchedType, onSearchType }: SearchBoxProps) {
+
+    function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         onSearch(value.trim())
         onSearchType(type.trim())
@@ -65,11 +78,6 @@ function SearchBox({ value, searchedValue, onChange, onSearch, onClear, type, on
                         <circle cx="12" cy="8" r="3.5" />
                         <path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" />
                     </svg>}
-                    
-                    value={type}
-                    searchedValue={searchedType}
-                    onChange={(event) => onChangeType(event.target.value)}
-                    onClear={onClear}
                 />
 
                 <button type="submit" className="rounded-full bg-accent px-6 py-3 font-bold text-night transition-transform hover:-translate-y-0.5 active:translate-y-0 md:self-end">

@@ -1,4 +1,6 @@
-function PropertyCard(props) {
+import type { Property } from '../../types/property'
+
+function PropertyCard(props: Property) {
     return (
         <article className="group overflow-hidden rounded-2xl bg-surface shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover">
             <div className="relative">

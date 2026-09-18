@@ -1,4 +1,17 @@
-function SearchField(props) {
+import type { ChangeEventHandler, InputHTMLAttributes, ReactNode } from 'react'
+
+interface SearchFieldProps {
+    label: string
+    type: InputHTMLAttributes<HTMLInputElement>['type']
+    placeholder: string
+    icon: ReactNode
+    value?: string
+    searchedValue?: string
+    onChange?: ChangeEventHandler<HTMLInputElement>
+    onClear?: () => void
+}
+
+function SearchField(props: SearchFieldProps) {
     return (
         <label className="grid gap-1.5 text-sm font-bold">
             {props.label}

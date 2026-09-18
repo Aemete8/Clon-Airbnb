@@ -1,6 +1,11 @@
-import PropertyCard from './PropertyCard.jsx'
+import type { Property } from '../../types/property'
+import PropertyCard from './PropertyCard'
 
-function PropertiesSection({ properties }) {
+interface PropertiesSectionProps {
+    properties: Property[]
+}
+
+function PropertiesSection({ properties }: PropertiesSectionProps) {
     return (
         <section className="mt-14">
             <div className="mb-6 flex items-end justify-between gap-4">
