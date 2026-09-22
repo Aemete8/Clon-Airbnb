@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import type { Property } from "../types/property";
-import Header from "./layout/Header";
-import Hero from "./ui/Hero";
-import SearchBox from "./ui/SearchBox";
-import PropertiesSection from "./properties/PropertiesSection";
+import Header from "../components/layout/Header";
+import Hero from "../components/ui/Hero";
+import SearchBox from "../components/ui/SearchBox";
+import PropertiesSection from "../components/properties/PropertiesSection";
 import { properties } from "../data/properties";
-import { filterProperties } from "./utils/filterProperties";
+import { filterProperties } from "../components/utils/filterProperties";
 
-function App() {
+export default function HomePage() {
     const [city, setCity] = useState("");
     const [search, setSearch] = useState("");
     const [type, setType] = useState("");
@@ -39,7 +39,6 @@ function App() {
     return (
         <>
             <Header />
-
             <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:px-10">
                 <Hero />
 
@@ -82,5 +81,3 @@ function App() {
         </>
     );
 }
-
-export default App;
