@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 export function NotFoundPage() {
     return (
-        <main className="flex min-h-[80vh] flex-col items-center justify-center gap-6 px-6 text-center">
+        <main className="flex min-h-[80vh] flex-col items-center justify-center gap-6 px-6 text-center flex-1 mx-auto">
             <p className="text-8xl font-extrabold text-accent">404</p>
             <h1 className="text-3xl font-extrabold tracking-tight">
                 Página no encontrada

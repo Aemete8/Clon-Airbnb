@@ -1,5 +1,5 @@
 import type { Property } from "../../types/property";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 function PropertyCard(props: Property) {
     const navigate = useNavigate();
@@ -7,7 +7,7 @@ function PropertyCard(props: Property) {
         navigate(`/properties/${props.id}`);
     };
     return (
-        <article className="group overflow-hidden rounded-2xl bg-surface shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover">
+        <article onClick={handlePropertyClick} className="group overflow-hidden rounded-2xl bg-surface shadow-card transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover cursor-pointer">
             <div className="relative">
                 <img
                     src={props.image}
@@ -39,12 +39,12 @@ function PropertyCard(props: Property) {
                             / noche
                         </span>
                     </strong>
-                    <button
-                        onClick={handlePropertyClick}
+                    <Link
+                        to={`/properties/${props.id}`}
                         className="text-sm font-semibold text-accent transition-transform hover:translate-x-0.5 cursor-pointer"
                     >
                         Ver detalles →
-                    </button>
+                    </Link>
                 </div>
             </div>
         </article>

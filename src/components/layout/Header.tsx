@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { NavLink } from "react-router";
 
-function Header() {
+export function Header() {
     const navClass = ({ isActive }: { isActive: boolean }) =>
         `transition-colors hover:text-accent ${isActive ? "text-accent" : "text-ink/90"}`;
 
@@ -41,5 +41,3 @@ function Header() {
         </header>
     );
 }
-
-export default Header;

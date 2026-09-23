@@ -8,7 +8,7 @@ export function LoginPage() {
     };
 
     return (
-        <main className="flex min-h-[80vh] items-center justify-center px-6">
+        <main className="flex min-h-[80vh] items-center justify-center px-6 flex-1 mx-auto">
             <div className="w-full max-w-md rounded-3xl border border-border bg-surface p-8 shadow-card">
                 <div className="mb-8 text-center">
                     <p className="mb-1 text-sm font-bold uppercase tracking-[0.14em] text-accent">

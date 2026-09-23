@@ -36,7 +36,7 @@ export default function HomePage() {
     );
 
     return (
-        <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:px-10">
+        <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:px-10 flex-1 mx-auto">
             <Hero />
 
             <SearchBox
