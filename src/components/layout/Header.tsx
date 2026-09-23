@@ -1,7 +1,13 @@
+import { Link } from "react-router";
+import { NavLink } from "react-router";
+
 function Header() {
+    const navClass = ({ isActive }: { isActive: boolean }) =>
+        `transition-colors hover:text-accent ${isActive ? "text-accent" : "text-ink/90"}`;
+
     return (
         <header className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-4 border-b border-border bg-surface/90 px-6 py-4 backdrop-blur supports-[backdrop-filter]:bg-surface/70 md:px-10">
-            <a href="#" className="flex items-center gap-2 text-accent">
+            <Link to="/" className="flex items-center gap-2 text-accent">
                 <svg
                     className="h-6 w-6"
                     viewBox="0 0 24 24"
@@ -16,21 +22,24 @@ function Header() {
                 <span className="text-xl font-extrabold tracking-tight">
                     Platzi-host
                 </span>
-            </a>
+            </Link>
 
             <nav className="flex flex-wrap items-center gap-6 text-sm font-semibold">
-                <a href="#" className="text-ink/90 transition-colors hover:text-accent">
-                    Alojamientos
-                </a>
-                <a href="#" className="text-ink/90 transition-colors hover:text-accent">
-                    Experiencias
-                </a>
-                <a href="#" className="text-ink/90 transition-colors hover:text-accent">
-                    Anfitriones
-                </a>
+                <NavLink to="/search" className={navClass}>
+                    Buscar
+                </NavLink>
+                <NavLink to="/favorites" className={navClass}>
+                    Favoritos
+                </NavLink>
+                <NavLink to="/profile" className={navClass}>
+                    Perfil
+                </NavLink>
+                <NavLink to="/login" className={navClass}>
+                    Login
+                </NavLink>
             </nav>
         </header>
-    )
+    );
 }
 
-export default Header
+export default Header;

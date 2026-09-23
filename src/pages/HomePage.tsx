@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import type { Property } from "../types/property";
-import Header from "../components/layout/Header";
 import Hero from "../components/ui/Hero";
 import SearchBox from "../components/ui/SearchBox";
 import PropertiesSection from "../components/properties/PropertiesSection";
@@ -25,7 +24,7 @@ export default function HomePage() {
             } finally {
                 setIsLoading(false);
             }
-        }, 3000);
+        }, 2000);
 
         return () => clearTimeout(timerId);
     }, []);
@@ -37,47 +36,44 @@ export default function HomePage() {
     );
 
     return (
-        <>
-            <Header />
-            <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:px-10">
-                <Hero />
+        <main className="mx-auto max-w-6xl px-6 pb-16 pt-8 md:px-10">
+            <Hero />
 
-                <SearchBox
-                    value={city}
-                    onChange={setCity}
-                    searchedValue={search}
-                    onSearch={setSearch}
-                    onClear={() => {
-                        setCity("");
-                        setSearch("");
-                        setType("");
-                        setSearchedType("");
-                    }}
-                    type={type}
-                    onChangeType={setType}
-                    searchedType={searchedType}
-                    onSearchType={setSearchedType}
-                />
+            <SearchBox
+                value={city}
+                onChange={setCity}
+                searchedValue={search}
+                onSearch={setSearch}
+                onClear={() => {
+                    setCity("");
+                    setSearch("");
+                    setType("");
+                    setSearchedType("");
+                }}
+                type={type}
+                onChangeType={setType}
+                searchedType={searchedType}
+                onSearchType={setSearchedType}
+            />
 
-                {isLoading && (
-                    <div className="mt-16 flex flex-col items-center gap-3">
-                        <div className="h-8 w-8 animate-spin rounded-full border-4 border-border border-t-accent" />
-                        <p className="text-sm font-semibold text-muted">
-                            Cargando propiedades...
-                        </p>
-                    </div>
-                )}
-
-                {error && (
-                    <p className="mt-16 text-center text-sm font-semibold text-red-400">
-                        {error}
+            {isLoading && (
+                <div className="mt-16 flex flex-col items-center gap-3">
+                    <div className="h-8 w-8 animate-spin rounded-full border-4 border-border border-t-accent" />
+                    <p className="text-sm font-semibold text-muted">
+                        Cargando propiedades...
                     </p>
-                )}
+                </div>
+            )}
 
-                {!isLoading && !error && (
-                    <PropertiesSection properties={filteredProperties} />
-                )}
-            </main>
-        </>
+            {error && (
+                <p className="mt-16 text-center text-sm font-semibold text-red-400">
+                    {error}
+                </p>
+            )}
+
+            {!isLoading && !error && (
+                <PropertiesSection properties={filteredProperties} />
+            )}
+        </main>
     );
 }
