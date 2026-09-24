@@ -1,7 +1,7 @@
 import { Link, useNavigate, NavLink, useLocation } from "react-router";
 import { isAuthenticated, logout } from "../utils/auth";
 
-export function Header() {
+export default function Header() {
     const navigate = useNavigate();
     const location = useLocation();
 
