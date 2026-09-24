@@ -2,7 +2,7 @@
 
 # Domain / Vercel
 
-- [Vercel]([https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react](https://clon-airbnb-three.vercel.app/))
+- [Vercel](https://clon-airbnb-three.vercel.app/)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
