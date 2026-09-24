@@ -1,10 +1,19 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { login } from "../components/utils/auth";
 
-export function LoginPage() {
+type LocationState = {
+    from?: string;
+};
+
+export default function LoginPage() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const state = location.state as LocationState | null;
+    const from = state?.from || "/profile";
 
     const handleLogin = () => {
-        navigate("/profile", { replace: true });
+        login();
+        navigate(from, { replace: true });
     };
 
     return (
@@ -43,6 +52,7 @@ export function LoginPage() {
                 </div>
 
                 <button
+                    type="button"
                     onClick={handleLogin}
                     className="mt-6 w-full rounded-full bg-accent py-3 font-bold text-night transition-transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
                 >

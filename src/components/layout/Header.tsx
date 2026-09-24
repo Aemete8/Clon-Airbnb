@@ -1,7 +1,15 @@
-import { Link } from "react-router";
-import { NavLink } from "react-router";
+import { Link, useNavigate, NavLink, useLocation } from "react-router";
+import { isAuthenticated, logout } from "../utils/auth";
 
 export function Header() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+    };
+
     const navClass = ({ isActive }: { isActive: boolean }) =>
         `transition-colors hover:text-accent ${isActive ? "text-accent" : "text-ink/90"}`;
 
@@ -34,9 +42,13 @@ export function Header() {
                 <NavLink to="/profile" className={navClass}>
                     Perfil
                 </NavLink>
-                <NavLink to="/login" className={navClass}>
-                    Login
-                </NavLink>
+                {isAuthenticated() ? (
+                    <button className="transition-colors hover:text-accent text-ink/90 cursor-pointer" type="button" onClick={handleLogout}>
+                        Salir
+                    </button>
+                ) : (
+                    <NavLink className={navClass} to="/login">Login</NavLink>
+                )}
             </nav>
         </header>
     );

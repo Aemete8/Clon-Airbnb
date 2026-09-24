@@ -3,7 +3,7 @@ import PropertySection from "../components/properties/PropertiesSection";
 import { properties } from "../data/properties";
 import { SearchFilters } from "../components/search/SearchFilters";
 
-export function SearchPage() {
+export default function SearchPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const destination = searchParams.get("destination") || "";
     const type = searchParams.get("type") || "";

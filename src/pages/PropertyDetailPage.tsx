@@ -1,28 +1,8 @@
-import { Link, useParams } from "react-router";
-import { properties } from "../data/properties";
+import { Link, useLoaderData } from "react-router";
+import { Property } from "../types/property";
 
-export function PropertyDetailPage() {
-    const { id } = useParams();
-    const property = properties.find((property) => property.id === Number(id));
-
-    if (!property) {
-        return (
-            <main className="flex-1 flex flex-col items-center justify-center gap-4 px-6 text-center">
-                <h1 className="text-5xl font-extrabold tracking-tight text-accent">
-                    Propiedad no encontrada
-                </h1>
-                <p className="text-sm text-muted">
-                    La propiedad que buscas no existe o fue eliminada.
-                </p>
-                <Link
-                    to="/search"
-                    className="rounded-full bg-accent px-6 py-3 font-bold text-night transition-transform hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0"
-                >
-                    Ver otras propiedades
-                </Link>
-            </main>
-        );
-    }
+export default function PropertyDetailPage() {
+    const property = useLoaderData<Property>();
 
     return (
         <main className="flex-1 mx-auto flex max-w-6xl flex-col gap-6 px-6 pb-16 pt-8 md:flex-row md:items-start md:px-10">
